@@ -1,5 +1,24 @@
 package gomon
 
+import "encoding/json"
+
+const (
+	pokeUrl           string = `http://pokeapi.co/api/v1`
+	pokedex_const     string = `pokedex`
+	pokemon_const     string = `pokemon`
+	type_const        string = `type`
+	move_const        string = `move`
+	ability_const     string = `ability`
+	egg_const         string = `egg`
+	description_const string = `description`
+	sprite_const      string = `sprite`
+	game_const        string = `game`
+)
+
+type entity interface {
+	unmarshal([]byte) error
+}
+
 type Pokedex struct {
 	Created  string `json:"created"`
 	Modified string `json:"modified"`
@@ -162,4 +181,58 @@ type Game struct {
 	Name        string  `json:"name"`
 	ReleaseYear float64 `json:"release_year"`
 	ResourceUri string  `json:"resource_uri"`
+}
+
+func (p *Pokedex) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, p)
+
+	return err
+}
+
+func (p *Pokemon) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, p)
+
+	return err
+}
+
+func (t *Type) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, t)
+
+	return err
+}
+
+func (m *Move) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, m)
+
+	return err
+}
+
+func (a *Ability) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, a)
+
+	return err
+}
+
+func (e *Egg) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, e)
+
+	return err
+}
+
+func (d *Description) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, d)
+
+	return err
+}
+
+func (s *Sprite) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, s)
+
+	return err
+}
+
+func (g *Game) unmarshal(raw_json []byte) error {
+	err := json.Unmarshal(raw_json, g)
+
+	return err
 }
