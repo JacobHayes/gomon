@@ -94,10 +94,16 @@ type Type struct {
 		Name        string `json:"name"`
 		ResourceUri string `json:"resource_uri"`
 	} `json:"no_effect"`
-	Resistance     []interface{} `json:"resistance"`
-	ResourceUri    string        `json:"resource_uri"`
-	SuperEffective []interface{} `json:"super_effective"`
-	Weakness       []struct {
+	Resistance []struct {
+		Name        string `json:"name"`
+		ResourceUri string `json:"resource_uri"`
+	} `json:"resistance"`
+	ResourceUri    string `json:"resource_uri"`
+	SuperEffective []struct {
+		Name        string `json:"name"`
+		ResourceUri string `json:"resource_uri"`
+	} `json:"super_effective"`
+	Weakness []struct {
 		Name        string `json:"name"`
 		ResourceUri string `json:"resource_uri"`
 	} `json:"weakness"`
