@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/JacobHayes/gomon"
@@ -31,51 +32,42 @@ func main() {
 	fmt.Println("Resources:")
 	fmt.Println("\tPokedex, Pokemon, Type, Move, Ability, Egg, Description, Sprite, Game")
 	fmt.Print("\nChoose a resource: ")
-	switch strings.ToLower(readLine(stdin)) {
+	resource := strings.ToLower(readLine(stdin))
+
+	fmt.Print("Resource ID: ")
+	id, err := strconv.Atoi(readLine(stdin))
+	check(err)
+
+	var thing interface{}
+	switch resource {
 	case `pokedex`:
-		resource, err := gomon.GetPokedex(`1`)
+		thing, err = gomon.GetPokedex()
 		check(err)
-
-		fmt.Println(resource)
 	case `pokemon`:
-		resource, err := gomon.GetPokemon(`1`)
+		thing, err = gomon.GetPokemon(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `type`:
-		resource, err := gomon.GetType(`1`)
+		thing, err = gomon.GetType(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `move`:
-		resource, err := gomon.GetMove(`1`)
+		thing, err = gomon.GetMove(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `ability`:
-		resource, err := gomon.GetAbility(`1`)
+		thing, err = gomon.GetAbility(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `egg`:
-		resource, err := gomon.GetEgg(`1`)
+		thing, err = gomon.GetEgg(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `description`:
-		resource, err := gomon.GetDescription(`1`)
+		thing, err = gomon.GetDescription(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `sprite`:
-		resource, err := gomon.GetSprite(`1`)
+		thing, err = gomon.GetSprite(id)
 		check(err)
-
-		fmt.Println(resource)
 	case `game`:
-		resource, err := gomon.GetGame(`1`)
+		thing, err = gomon.GetGame(id)
 		check(err)
-
-		fmt.Println(resource)
 	}
+
+	fmt.Printf("%+v", thing)
 }
