@@ -5,7 +5,7 @@ import (
 )
 
 const resource string = `pokemon`
-const resource_id string = `1`
+const resource_id int = 1
 const resource_url string = `http://pokeapi.co/api/v1/pokemon/1/`
 
 func TestRequestUrl(t *testing.T) {
